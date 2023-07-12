@@ -14,7 +14,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Document(collection = "Embeded_Asset")
+@Document(collection = "embeded_asset")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
