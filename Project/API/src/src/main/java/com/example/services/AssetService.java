@@ -1,6 +1,7 @@
 package com.example.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -64,5 +65,17 @@ public class AssetService {
         }
         return false;
     }
+
+    // public AssetModel updateAssetModel(AssetModel existingAssetModel) {
+    // return null;
+    // }
+
+    // public Optional<AssetModel> getAssetModel(String assetModelId) {
+    // return null;
+    // }
+
+    // public Optional<AssetModel> deleteAssetModel(String assetModelId) {
+    // return null;
+    // }
 
 }
