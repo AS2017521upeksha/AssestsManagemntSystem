@@ -55,4 +55,14 @@ public class AssetModel {
     @NotNull(message = "Item barcode cannot be null")
     private String barcode;
 
+    // This implementation of the isPresent() method always returns false.
+    // It indicates that the value is not present within the current context.
+    public boolean isPresent() {
+        return false;
+    }
+
+    public Object get() {
+        return null;
+    }
+
 }
