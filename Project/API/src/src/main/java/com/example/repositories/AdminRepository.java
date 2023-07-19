@@ -8,4 +8,7 @@ import com.example.models.AdminModel;
 
 public interface AdminRepository extends MongoRepository<AdminModel, ObjectId> {
 
+    AdminModel findOneById(String id);
+
+    void deleteById(String id);
 }
