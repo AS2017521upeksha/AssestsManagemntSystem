@@ -1,5 +1,5 @@
 package com.example.common;
 
-public class e {
+public class enum {
 
 }
