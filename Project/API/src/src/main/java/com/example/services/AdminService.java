@@ -32,4 +32,8 @@ public class AdminService {
     public void deleteAdmin(String id) {
         adminRepositoryObj.deleteById(id);
     }
+
+    public AdminModel getAdminByUsername(String username) {
+        return adminRepositoryObj.findByUsername(username);
+    }
 }

@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api")
 public class AdminController {
 
     // Create object from AdminService class
@@ -29,10 +29,11 @@ public class AdminController {
     /*
      * @GetMapping
      * public ResponseEntity<List<AdminModel>> getAllAdmins(){
-     * return new ResponseEntity<List<AdminModel>>(adminServiceObj.add, null, 
+     * return new ResponseEntity<List<AdminModel>>(adminServiceObj.add, null,
      * }
      */
 
+    // Http requests
     @GetMapping
     public ResponseEntity<List<AdminModel>> getAllAdmins() {
         List<AdminModel> admins = adminServiceObj.getAllAdmins();
@@ -45,7 +46,7 @@ public class AdminController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdAdmin);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public ResponseEntity<AdminModel> updateAdmin(@PathVariable String id, @RequestBody AdminModel admin) {
         Optional<AdminModel> existingAdmin = adminServiceObj.getAdminById(id);
         if (existingAdmin.isPresent()) {
@@ -57,7 +58,7 @@ public class AdminController {
         }
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAdmin(@PathVariable String id) {
         Optional<AdminModel> admin = adminServiceObj.getAdminById(id);
         if (admin.isPresent()) {
@@ -65,6 +66,17 @@ public class AdminController {
             return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@Valid @RequestBody AdminModel admin) {
+        User adminObj = AdminService.findByUsername(admin.getUsername());
+
+        if (adminObj != null && adminObj.getPassword().equals(admin.getPassword())) {
+            return ResponseEntity.ok("Login successful");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
         }
     }
 

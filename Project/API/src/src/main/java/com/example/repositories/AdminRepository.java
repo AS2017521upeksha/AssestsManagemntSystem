@@ -11,4 +11,6 @@ public interface AdminRepository extends MongoRepository<AdminModel, ObjectId> {
     AdminModel findOneById(String id);
 
     void deleteById(String id);
+
+    AdminModel findByUsername(String username);
 }
