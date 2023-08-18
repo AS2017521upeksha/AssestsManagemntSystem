@@ -25,7 +25,7 @@ import com.example.services.AssetService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/students")
+@RequestMapping("/api/asset")
 public class AssetController {
 
     @Autowired
@@ -48,7 +48,7 @@ public class AssetController {
 
     }
 
-    @PutMapping
+    @PutMapping("/{Id}")
     public ResponseEntity<AssetModel> updateAdmin(@PathVariable String id, @RequestBody AssetModel assetModel) {
         AssetModel existingAssetModel = assetService1.getAssetById(id);
         if (existingAssetModel.isPresent()) {
@@ -60,7 +60,7 @@ public class AssetController {
         }
     }
 
-    @PatchMapping
+    @PatchMapping("/{assetModelId}")
     public ResponseEntity<AssetModel> patchAssetModel(@PathVariable("assetModelId") String assetModelId,
             @RequestBody Map<String, Object> updatedFields) {
         Optional<AssetModel> existingAssetModelOptional = assetService1.getAsset(assetModelId);
@@ -74,7 +74,7 @@ public class AssetController {
         }
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{assetModelId}")
     public ResponseEntity<Void> deleteAssetModel(@PathVariable("assetModelId") String assetModelId) {
         Optional<AssetModel> assetModel = assetService1.deleteAssetModel(assetModelId);
         if (assetModel.isPresent()) {
